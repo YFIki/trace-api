@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { getTraceList } from '../services/traceService';
+import { getTraceList } from '../../services/traceService';
 const router = Router();
 
 export default (app: Router) => {

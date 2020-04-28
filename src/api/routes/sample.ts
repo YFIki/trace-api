@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { getSample } from '../services/sampleService';
+import { getSample } from '../../services/sampleService';
 const router = Router();
 
 export default (app: Router) => {
