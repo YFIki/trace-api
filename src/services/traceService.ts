@@ -1,10 +1,10 @@
-import { OptionsJson } from "body-parser";
-import { Object } from "lodash";
-
+/**
+ * トレース情報を返却する
+ * @returns object
+ */
 export const getTraceList = () => {
-    const mockData: object = 
-        {
-            "trace_list": [
+    const mockList: Array<any> = 
+        [
             {
                 "datetime": "2020/04/27 5:00",
                 "facility": "海光物産",
@@ -26,8 +26,7 @@ export const getTraceList = () => {
                 "bizStep": "小売販売",
                 "disposition": "消費者購入済"
             }
-            ]
-        };
+        ]
     
-    return mockData;
+    return mockList;
 };

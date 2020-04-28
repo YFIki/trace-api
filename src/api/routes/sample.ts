@@ -8,6 +8,6 @@ export default (app: Router) => {
     router.get('/', (req: Request, res: Response, next: NextFunction) => {
         const result = getSample();
         
-        return res.json(result).status(200);
+        return res.json({trace_list: result}).status(200);
     });
   };
