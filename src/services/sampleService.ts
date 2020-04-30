@@ -1,6 +1,6 @@
 
 export const getSample = () => {
-    return {
-        sample: "sample data."
-    }
+	return {
+		sample: "sample data."
+	}
 };
