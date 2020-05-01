@@ -1,9 +1,42 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { getTraceList } from '../../services/traceService';
-import { getToken } from '../middlewares/getToken';
-import config from 'config';
 const router = Router();
 
+/**
+ * @swagger
+ * '/api/v1/trace':
+ *  get:
+ *   summary: '？？？'
+ *   description: '？？？？？'
+ *   responses:
+ *     200:
+ *       description: '正常終了'
+ *       content:
+ *         application/json:
+ *           schema:
+ *            properties:
+ *             trace_list:
+ *               description: 'サンプル'
+ *               type: array
+ *               items:
+ *                 type: objec
+ *                 properties:
+ *                   datetime:
+ *                     description: '？？？'
+ *                     type: date
+ *                   facility:
+ *                     description: '？？？'
+ *                     type: string
+ *                   stateId:
+ *                     description: '？？？'
+ *                     type: number
+ *                   bizStep:
+ *                     description: '？？？'
+ *                     type: string
+ *                   disposition:
+ *                     description: '？？？'
+ *                     type: string
+ */
 export default (app: Router) => {
 	app.use('/v1/trace', router);
 
