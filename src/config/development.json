@@ -1,13 +1,13 @@
 {
-    "port": 3000,
-    "db": {
-        "database": "TRACE_DB",
-        "username": "ikiTraceAdmin",
-        "password": "ikiTracePass",
-        "dialect": "postgres",
-        "timezone": "+09:00"
-    },
-    "logs": {
-        "level": "debug"
-    }
+  "port": 4000,
+  "db": {
+    "database": "TRACE_DB",
+    "username": "ikiTraceAdmin",
+    "password": "ikiTracePass",
+    "dialect": "postgres",
+    "timezone": "+09:00"
+  },
+  "logs": {
+    "level": "debug"
+  }
 }
