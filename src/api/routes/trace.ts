@@ -11,7 +11,7 @@ export default (app: Router) => {
 		try {
 			const result = getTraceList();
 			
-			return res.json(result).status(200);
+			return res.json({trace_list: result}).status(200);
 		} catch (err) {
 			// 例外が発生した時の対応がわからないので、一旦console.logに出力するようにします。
 			console.log(err);
