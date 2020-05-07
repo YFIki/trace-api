@@ -1,0 +1,411 @@
+{
+  "trace": {
+    "epc_id": "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.2000",
+    "events": [
+      {
+        "asset_id": "urn:ibm:provenance:asset:event:decommission:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:4c987c166d5ed352dd158deb5e351cedc16164793ee97296aced2611e52a5839"
+      },
+      {
+        "asset_id": "urn:ibm:provenance:asset:event:observation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:1007d00a7e4cfa169e7708ed0fd673bf476985b36ec42a984d6fa90a1864d284"
+      }
+    ],
+    "output_epcs": [],
+    "input_epcs": [],
+    "parent_epcs": [
+      {
+        "epc_id": "urn:ibm:ift:lpn:obj:4966479542960.3000",
+        "events": [
+          {
+            "asset_id": "urn:ibm:provenance:asset:event:aggregation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:929c5316ab5fe73076b01e498f9ad57f76c977ed60f281ed18906743af1b3fdc"
+          },
+          {
+            "asset_id": "urn:ibm:provenance:asset:event:disaggregation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:09e68d5285c1028110d39c8969cf090f3cba1218e50e001c8993e77c0d21bc0b"
+          },
+          {
+            "asset_id": "urn:ibm:provenance:asset:event:observation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:3378ff657a020b438f9512ad973b5e8d512867842ca83b5f38461500faf1aab2"
+          },
+          {
+            "asset_id": "urn:ibm:provenance:asset:event:observation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:abe9da1644aa3f71092f467ab6c6664210c468fb08365cba7e3717fe300f8167"
+          }
+        ],
+        "input_epcs": [],
+        "output_epcs": [],
+        "parent_epcs": []
+      }
+    ],
+    "child_epcs": [
+      {
+        "epc_id": "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.1000",
+        "events": [
+          {
+            "asset_id": "urn:ibm:provenance:asset:event:aggregation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:1ee69bc9b08f880a706c8a7f4b4ce65373412e2c71b85a4d36bce782338a97cb"
+          }
+        ],
+        "input_epcs": [
+          {
+            "epc_id": "urn:ibm:ift:product:lot:class:4966479542960.IAeK.100",
+            "events": [
+              {
+                "asset_id": "urn:ibm:provenance:asset:event:transformation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:d3614fe87768ec2158884e14245a17c9c4de0ba465952c628d724b47b593da96"
+              },
+              {
+                "asset_id": "urn:ibm:provenance:asset:event:commission:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:179153308d2d457bdbf0456457c9b3ca8d0f49ecf54704eb9d563d2c861a1096"
+              }
+            ],
+            "input_epcs": [],
+            "child_epcs": [],
+            "parent_epcs": []
+          }
+        ],
+        "output_epcs": [],
+        "child_epcs": []
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "urn:uuid:12ef37c7-546d-428e-a8c0-6995b7888036",
+      "asset_id": "urn:ibm:provenance:asset:event:decommission:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:4c987c166d5ed352dd158deb5e351cedc16164793ee97296aced2611e52a5839",
+      "org_id": "8f01d375-dc9d-45cc-807e-8f27814ed1e3",
+      "event_type": "decommission",
+      "event_time": "2020-04-27T13:00:00.000Z",
+      "biz_step": "urn:epcglobal:cvb:bizstep:retail_selling",
+      "biz_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "biz_sub_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "epcs_ids": [
+        "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.2000"
+      ],
+      "quantities": [],
+      "child_quantities": [],
+      "input_epc_ids": [],
+      "input_quantities": [],
+      "output_epc_ids": [],
+      "output_quantities": [],
+      "source_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "source_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "transaction_ids": []
+    },
+    {
+      "id": "urn:uuid:06c96100-c848-4601-81f0-79dc91d2b129",
+      "asset_id": "urn:ibm:provenance:asset:event:disaggregation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:09e68d5285c1028110d39c8969cf090f3cba1218e50e001c8993e77c0d21bc0b",
+      "org_id": "8f01d375-dc9d-45cc-807e-8f27814ed1e3",
+      "event_type": "disaggregation",
+      "event_time": "2020-04-27T12:00:00.000Z",
+      "biz_step": "urn:epcglobal:cvb:bizstep:unpacking",
+      "biz_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "biz_sub_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "epcs_ids": [
+        "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.2000",
+        "urn:ibm:ift:lpn:obj:4966479542960.3000"
+      ],
+      "parent_epc_id": "urn:ibm:ift:lpn:obj:4966479542960.3000",
+      "child_epc_ids": "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.2000",
+      "quantities": [],
+      "child_quantities": [],
+      "input_epc_ids": [],
+      "input_quantities": [],
+      "output_epc_ids": [],
+      "output_quantities": [],
+      "source_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "source_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "transaction_ids": []
+    },
+    {
+      "id": "urn:uuid:de563ebd-8368-4575-b588-33bc58167c47",
+      "asset_id": "urn:ibm:provenance:asset:event:observation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:3378ff657a020b438f9512ad973b5e8d512867842ca83b5f38461500faf1aab2",
+      "org_id": "8f01d375-dc9d-45cc-807e-8f27814ed1e3",
+      "event_type": "observation",
+      "event_time": "2020-04-27T00:00:00.000Z",
+      "biz_step": "urn:epcglobal:cbv:bizstep:storing",
+      "biz_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "biz_sub_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "epcs_ids": [
+        "urn:ibm:ift:lpn:obj:4966479542960.3000"
+      ],
+      "quantities": [],
+      "child_quantities": [],
+      "input_epc_ids": [],
+      "input_quantities": [],
+      "output_epc_ids": [],
+      "output_quantities": [],
+      "source_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "source_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "transaction_ids": []
+    },
+    {
+      "id": "urn:uuid:c8ee7cda-aba4-4c9e-9f6b-ae5e4938f4a4",
+      "asset_id": "urn:ibm:provenance:asset:event:observation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:abe9da1644aa3f71092f467ab6c6664210c468fb08365cba7e3717fe300f8167",
+      "org_id": "8f01d375-dc9d-45cc-807e-8f27814ed1e3",
+      "event_type": "observation",
+      "event_time": "2020-04-26T23:00:00.000Z",
+      "biz_step": "urn:epcglobal:cvb:bizstep:receiving",
+      "biz_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "biz_sub_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "epcs_ids": [
+        "urn:ibm:ift:lpn:obj:4966479542960.3000"
+      ],
+      "quantities": [],
+      "child_quantities": [],
+      "input_epc_ids": [],
+      "input_quantities": [],
+      "output_epc_ids": [],
+      "output_quantities": [],
+      "source_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "source_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "transaction_ids": []
+    },
+    {
+      "id": "urn:uuid:6d6e5304-17b8-4887-b65c-12a829da37af",
+      "asset_id": "urn:ibm:provenance:asset:event:aggregation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:929c5316ab5fe73076b01e498f9ad57f76c977ed60f281ed18906743af1b3fdc",
+      "org_id": "8f01d375-dc9d-45cc-807e-8f27814ed1e3",
+      "event_type": "aggregation",
+      "event_time": "2020-04-26T22:00:00.000Z",
+      "biz_step": "urn:epcglobal:cbv:bizstep:shipping",
+      "disposition": "urn:epcglobal:cbv:disp:in_transit",
+      "biz_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "biz_sub_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "epcs_ids": [
+        "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.2000",
+        "urn:ibm:ift:lpn:obj:4966479542960.3000"
+      ],
+      "parent_epc_id": "urn:ibm:ift:lpn:obj:4966479542960.3000",
+      "child_epc_ids": "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.2000",
+      "quantities": [],
+      "child_quantities": [],
+      "input_epc_ids": [],
+      "input_quantities": [],
+      "output_epc_ids": [],
+      "output_quantities": [],
+      "source_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "source_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "transaction_ids": []
+    },
+    {
+      "id": "urn:uuid:ddf95956-d619-4040-bf6a-d39ce9caf94f",
+      "asset_id": "urn:ibm:provenance:asset:event:observation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:1007d00a7e4cfa169e7708ed0fd673bf476985b36ec42a984d6fa90a1864d284",
+      "org_id": "8f01d375-dc9d-45cc-807e-8f27814ed1e3",
+      "event_type": "observation",
+      "event_time": "2020-04-26T21:00:00.000Z",
+      "biz_step": "urn:epcglobal:cbv:bizstep:storing",
+      "biz_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "biz_sub_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "epcs_ids": [
+        "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.2000"
+      ],
+      "quantities": [],
+      "child_quantities": [],
+      "input_epc_ids": [],
+      "input_quantities": [],
+      "output_epc_ids": [],
+      "output_quantities": [],
+      "source_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "source_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "transaction_ids": []
+    },
+    {
+      "id": "urn:uuid:975343dc-16bb-4b1b-ade1-576b12a96353",
+      "asset_id": "urn:ibm:provenance:asset:event:aggregation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:1ee69bc9b08f880a706c8a7f4b4ce65373412e2c71b85a4d36bce782338a97cb",
+      "org_id": "8f01d375-dc9d-45cc-807e-8f27814ed1e3",
+      "event_type": "aggregation",
+      "event_time": "2020-04-26T20:00:00.000Z",
+      "biz_step": "urn:epcglobal:cbv:bizstep:packing",
+      "biz_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "biz_sub_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "epcs_ids": [
+        "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.1000",
+        "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.2000"
+      ],
+      "parent_epc_id": "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.2000",
+      "child_epc_ids": "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.1000",
+      "quantities": [],
+      "child_quantities": [],
+      "input_epc_ids": [],
+      "input_quantities": [],
+      "output_epc_ids": [],
+      "output_quantities": [],
+      "source_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "source_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "transaction_ids": []
+    },
+    {
+      "id": "urn:uuid:2a6c5283-e290-4015-a9c1-3baaa20b6e40",
+      "asset_id": "urn:ibm:provenance:asset:event:transformation:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:d3614fe87768ec2158884e14245a17c9c4de0ba465952c628d724b47b593da96",
+      "org_id": "8f01d375-dc9d-45cc-807e-8f27814ed1e3",
+      "event_type": "transformation",
+      "event_time": "2020-04-26T19:00:00.000Z",
+      "biz_step": "urn:epcglobal:cbv:bizstep:creating_class_instance",
+      "biz_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "biz_sub_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "epcs_ids": [
+        "urn:ibm:ift:product:lot:class:4966479542960.IAeK.100",
+        "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.1000"
+      ],
+      "quantities": [],
+      "child_quantities": [],
+      "input_epc_ids": [],
+      "input_quantities": [
+        {
+          "epc_id": "urn:ibm:ift:product:lot:class:4966479542960.IAeK.100",
+          "quantity": 1,
+          "uom": "KGM"
+        }
+      ],
+      "output_epc_ids": [
+        "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.1000"
+      ],
+      "output_quantities": [],
+      "source_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "source_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "transaction_ids": []
+    },
+    {
+      "id": "urn:uuid:2af1d9f8-be1d-4d65-a79b-ca1f92d35445",
+      "asset_id": "urn:ibm:provenance:asset:event:commission:8f01d375-dc9d-45cc-807e-8f27814ed1e3:default:default:179153308d2d457bdbf0456457c9b3ca8d0f49ecf54704eb9d563d2c861a1096",
+      "org_id": "8f01d375-dc9d-45cc-807e-8f27814ed1e3",
+      "event_type": "commission",
+      "event_time": "2020-04-26T18:00:00.000Z",
+      "biz_step": "urn:epcglobal:cvb:bizstep:commissioning",
+      "disposition": "urn:epcglobal:cbv:disp:Active",
+      "biz_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "biz_sub_location_id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "epcs_ids": [
+        "urn:ibm:ift:product:lot:class:4966479542960.IAeK.100"
+      ],
+      "quantities": [
+        {
+          "epc_id": "urn:ibm:ift:product:lot:class:4966479542960.IAeK.100",
+          "quantity": 10000,
+          "uom": "KGM"
+        }
+      ],
+      "child_quantities": [],
+      "input_epc_ids": [],
+      "input_quantities": [],
+      "output_epc_ids": [],
+      "output_quantities": [],
+      "source_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "source_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "destination_sub_location_ids": [
+        "urn:ibm:ift:location:loc:4966479542960.jcze"
+      ],
+      "transaction_ids": []
+    }
+  ],
+  "products": [
+    {
+      "id": "urn:ibm:ift:product:class:4966479542960.IAeK",
+      "org_id": "8f01d375-dc9d-45cc-807e-8f27814ed1e3",
+      "description": "pro-trac-7",
+      "object_sku": "82507d595beaab43b0a2ea2188c706d7"
+    }
+  ],
+  "locations": [
+    {
+      "id": "urn:ibm:ift:location:loc:4966479542960.jcze",
+      "org_id": "8f01d375-dc9d-45cc-807e-8f27814ed1e3",
+      "party_role_code": "PORT",
+      "party_name": "Kaikou-trac-7",
+      "city": "",
+      "country_code": "392",
+      "postal_code": ""
+    }
+  ],
+  "lots_and_serials": [
+    {
+      "id": "urn:ibm:ift:product:lot:class:4966479542960.IAeK.100",
+      "product_id": "urn:ibm:ift:product:class:4966479542960.IAeK"
+    },
+    {
+      "id": "urn:ibm:ift:product:serial:obj:4966479542960.IAeK.1000",
+      "product_id": "urn:ibm:ift:product:class:4966479542960.IAeK"
+    }
+  ],
+  "payloads": []
+}
