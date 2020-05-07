@@ -15,27 +15,56 @@ const router = Router();
  *         application/json:
  *           schema:
  *            properties:
- *             trace_list:
- *               description: 'サンプル'
+ *             events:
+ *               description: 'イベント一覧'
  *               type: array
  *               items:
- *                 type: objec
+ *                 type: object
  *                 properties:
  *                   datetime:
- *                     description: '？？？'
+ *                     description: 'yyyy/mm/dd HH:MM'
  *                     type: date
  *                   facility:
- *                     description: '？？？'
+ *                     description: '<IFT取得施設データ> 　or  <変換用語>'
  *                     type: string
+ *                   bizLocation:
+ *                     type: object
+ *                     properties:
+ *                       latitude:
+ *                         description: 'float'
+ *                         type: number
+ *                       longitude:
+ *                         description: 'float'
+ *                         type: number
  *                   stateId:
- *                     description: '？？？'
- *                     type: number
+ *                     description: '<ID>'
+ *                     type: string
  *                   bizStep:
- *                     description: '？？？'
+ *                     description: '<変換用語>'
  *                     type: string
  *                   disposition:
- *                     description: '？？？'
+ *                     description: '<変換用語>'
  *                     type: string
+ *             payload:
+ *               description: 'イベント一覧'
+ *               type: object
+ *               properties:
+ *                 coordinate:
+ *                   description: 'float'
+ *                   type: object
+ *                   properties:
+ *                     latitude:
+ *                       description: 'float'
+ *                       type: number
+ *                     longitude:
+ *                       description: 'float'
+ *                       type: number
+ *                 casting_net_time:
+ *                   description: 'yyyy/mm/dd HH:MM'
+ *                   type: date
+ *                 lifting_net_time:
+ *                   description: 'yyyy/mm/dd HH:MM'
+ *                   type: date
  */
 export default (app: Router) => {
 	app.use('/v1/trace', router);
@@ -44,7 +73,7 @@ export default (app: Router) => {
 		try {
 			const result = getTraceList();
 			
-			return res.json({trace_list: result}).status(200);
+			return res.json(result).status(200);
 		} catch (err) {
 			// 例外が発生した時の対応がわからないので、一旦console.logに出力するようにします。
 			console.log(err);
