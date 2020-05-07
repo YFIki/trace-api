@@ -13,5 +13,5 @@ npm start
 ```
 
 ## Swaggerの確認
-`http://localhost:3000/api-docs`にブラウザから接続
+`http://localhost:000/api-docs`にブラウザから接続
 
