@@ -1,11 +1,11 @@
-const Sequelize = require('sequelize');
+import { Sequelize } from 'sequelize';
 const config = require('../config/development.json');
 var db = config.db;
 
 /**
  * company に対する接続設定を定義
  */
-const dbConfig = new Sequelize(db.database, db.username, db.password, {
+const dbconnection = new Sequelize(db.database, db.username, db.password, {
     // 接続先ホストを指定
     host: db.host,
     port: db.port,
@@ -21,4 +21,4 @@ const dbConfig = new Sequelize(db.database, db.username, db.password, {
     },
 });
 
-module.exports = dbConfig;
+export default dbconnection;
