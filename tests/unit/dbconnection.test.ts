@@ -3,6 +3,7 @@
  */
 import express from 'express';
 import DbConnection from '../../src/loaders/dbconnection';
+import request from 'supertest';
 const app = express();
 
 describe('dbconnector.jsの単体テスト', () => {
@@ -10,6 +11,12 @@ describe('dbconnector.jsの単体テスト', () => {
         it('接続テスト', async () => {
             app.use(DbConnection.middleware);
             expect(DbConnection).toBeDefined(); // Errorなく終了したか
+            expect.assertions(1);
+        });
+        it('sampleModelで値が取得できるか（START TRANSACTION-SELECT-COMMIT）のテスト', async () =>{
+            const response = await request('http://localhost:4000').get('/api/v1/sample');
+            console.log(response.body);
+            expect(response.body).toMatchObject({});
             expect.assertions(1);
         });
         it('切断テスト', async () => {
