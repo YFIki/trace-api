@@ -8,7 +8,7 @@
     "heroku-postbuild": "npm run build",
     "start": "nodemon",
     "inspect": "nodemon --inspect src/app.ts",
-    "test": "set NODE_CONFIG_DIR=./src/config NODE_ENV=test&&jest",
+    "test": "NODE_CONFIG_DIR=./src/config NODE_ENV=test jest",
     "lint": "npm run lint:js ",
     "lint:eslint": "eslint --ignore-path .gitignore --ext .ts",
     "lint:js": "npm run lint:eslint src/",
@@ -54,6 +54,8 @@
     "morgan": "^1.10.0",
     "pg": "^8.0.3",
     "reflect-metadata": "^0.1.13",
+    "superagent": "^5.2.2",
+    "supertest": "^4.0.2",
     "typedi": "^0.8.0",
     "winston": "^3.2.1"
   },

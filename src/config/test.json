@@ -6,5 +6,16 @@
     "mmoOrganizationId": "8f01d375-dc9d-45cc-807e-8f27814ed1e3",
     "apikey": "A5ktp3mn-yIcJBK6bxnhYb62QFRlaIqfpaFuZJnO39qf"
   },
-  "timezone": "Asia/Tokyo"
+  "timezone": "Asia/Tokyo",
+  "port": 4000,
+  "db": {
+    "database": "TRACE_DB",
+    "username": "ikiTraceAdmin",
+    "password": "ikiTracePass",
+    "dialect": "postgres",
+    "timezone": "+09:00"
+  },
+  "logs": {
+    "level": "debug"
+  }
 }
