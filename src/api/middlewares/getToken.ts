@@ -1,9 +1,15 @@
 import axios from 'axios';
 
+/**
+ * IFTから認証トークン（onboarding_token）を取得して返却する
+ * @param mmoOrganizationId 
+ * @param apikey 
+ * @return {object} json
+ */
 export const getToken = async (
   mmoOrganizationId: string,
   apikey: string
-): Promise<string> => {
+): Promise<{onboarding_token: string}> => {
   const iamTokenData = await getIamToken(apikey);
   return await exchangeToken(mmoOrganizationId, iamTokenData);
 };
