@@ -1,9 +1,9 @@
 {
   "port": 4000,
   "db": {
-    "database": "TRACE_DB",
-    "username": "ikiTraceAdmin",
-    "password": "ikiTracePass",
+    "database": "trace_db",
+    "username": "ikitraceadmin",
+    "password": "ikitracepass",
     "dialect": "postgres",
     "timezone": "+09:00"
   },
