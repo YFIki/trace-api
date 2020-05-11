@@ -1,5 +1,9 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { getSample } from '../../services/sampleService';
+import httpContext from 'express-http-context';
+import dbconnection from '../../loaders/dbconnection';
+import logger from '../../loaders/logger';
+
 const router = Router();
 
 /**
@@ -23,9 +27,28 @@ const router = Router();
 export default (app: Router) => {
 	app.use('/v1/sample', router);
 
-	router.get('/', (req: Request, res: Response, next: NextFunction) => {
-		const result = getSample();
+	router.get('/', async (req: Request, res: Response, next: NextFunction) => {
+		const sequelize = dbconnection.httpContextInstance;
+
+		try {
+			// トランザクションの開始
+			await sequelize.beginTransaction();
+
+			// サービスの処理
+			const result = await getSample();
 		
-		return res.json(result).status(200);
+			// 処理が正常に終わった場合、コミットし、取得したデータを返却する
+			await sequelize.commit();
+			
+			return res.json({sample: result}).status(200);
+		} catch (err) {
+			try {
+			// DBトランザクションをロールバック
+			await sequelize.rollback();
+			} catch (rollbackErr) {
+				logger.error(rollbackErr);
+			}
+			next(err);
+		}
 	});
 };

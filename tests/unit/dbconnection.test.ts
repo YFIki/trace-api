@@ -1,20 +1,28 @@
 /**
  * db_connector.jsの単体テスト
  */
-
-import dbconnection from '../../src/loaders/dbconnection';
+import express from 'express';
+import DbConnection from '../../src/loaders/dbconnection';
+import request from 'supertest';
+const app = express();
 
 describe('dbconnector.jsの単体テスト', () => {
     describe('接続成功時', () => {
         it('接続テスト', async () => {
-            console.log(dbconnection)
-            await dbconnection.authenticate();
-            expect(dbconnection).toBeDefined(); // Errorなく終了したか
+            app.use(DbConnection.middleware);
+            expect(DbConnection).toBeDefined(); // Errorなく終了したか
+            expect.assertions(1);
+        });
+        it('sampleModelで値が取得できるか（START TRANSACTION-SELECT-COMMIT）のテスト', async () =>{
+            const response = await request('http://localhost:4000').get('/api/v1/sample');
+            console.log(response.body);
+            expect(response.body).toMatchObject({});
             expect.assertions(1);
         });
         it('切断テスト', async () => {
+            const dbconnection = await new DbConnection();
             await dbconnection.close();
-            expect(dbconnection).toBeDefined(); // Errorなく終了したか
+            expect(DbConnection).toBeDefined(); // Errorなく終了したか
             expect.assertions(1);
         });
     });
