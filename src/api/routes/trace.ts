@@ -118,11 +118,11 @@ export default (app: Router) => {
 			// IFTから認証トークンを取得
 			const tokens = await getToken(config.ift.mmoOrganizationId, config.ift.apikey); 
 			const onboardingToken = tokens.onboarding_token;
-
+			
 			// 取得した認証トークンでIFTにデータを取得しに行く
 			const result = await getTraceConsumer(onboardingToken, epcId);
 			
-			return res.json(result).status(200);
+			return res.json(toCamelForObj(result)).status(200);
 		} catch (err) {
 			// 例外が発生した時の対応がわからないので、一旦console.logに出力するようにします。
 			console.log(err);
