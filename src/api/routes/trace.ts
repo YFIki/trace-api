@@ -118,6 +118,7 @@ export default (app: Router) => {
 			// IFTから認証トークンを取得
 			const tokens = await getToken(config.ift.mmoOrganizationId, config.ift.apikey); 
 			const onboardingToken = tokens.onboarding_token;
+			
 			// 取得した認証トークンでIFTにデータを取得しに行く
 			const result = await getTraceConsumer(onboardingToken, epcId);
 			

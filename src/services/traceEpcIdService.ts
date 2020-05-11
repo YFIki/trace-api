@@ -44,8 +44,6 @@ export const getTraceConsumer = async (
       return array;
     }, []);
 
-    console.log(payloads);
-
     // 取得されたeventsに上記で取得したpayloadsを追加したJSONを返却する
     return {events: result.events, payloads: payloads};
   } catch (err) {
