@@ -8,7 +8,7 @@ export { Converter as default };
  */
 const toCamelCase = (str: string): string => {
   // コンスタントケース、スネークケース、ケバブケースを変換
-  if (str.indexOf('-') !== 0 || str.indexOf('_') !== 0) {
+  if (str.indexOf('-') !== -1 || str.indexOf('_') !== -1) {
     str = str.toLowerCase();
     return str.split(/-|_/).map((word, index) => {
       if (index === 0) {
@@ -17,7 +17,7 @@ const toCamelCase = (str: string): string => {
       return word.charAt(0).toUpperCase() + word.slice(1);
     }).join('');
   }
-
+  
   // 上記以外は全てパスカルケースまたはキャメルケースと想定
   return str.charAt(0).toLowerCase() + str.slice(1);
 }
