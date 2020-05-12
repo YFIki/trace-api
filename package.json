@@ -8,7 +8,7 @@
     "heroku-postbuild": "npm run build",
     "start": "nodemon",
     "inspect": "nodemon --inspect src/app.ts",
-    "test": "NODE_CONFIG_DIR=./src/config NODE_ENV=test jest",
+    "test": "cross-env NODE_CONFIG_DIR=./src/config cross-env NODE_ENV=test jest",
     "lint": "npm run lint:js ",
     "lint:eslint": "eslint --ignore-path .gitignore --ext .ts",
     "lint:js": "npm run lint:eslint src/",
