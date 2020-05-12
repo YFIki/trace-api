@@ -55,10 +55,11 @@ export const getTraceConsumer = async (
       // 'urn:epcglobal:cbv:bizstep:{hoge}' の {hoge} を取得
       const bizStep = obj.biz_step.split(':').pop();
       const traceWord = traceWordsResource.cache.getTraceWordConvertion({bizStep: bizStep});
+      const facility = traceWordsResource.cache.getFacilityWord({locationId: obj.biz_location_id});
 
       const event = {
         "datetime": moment(obj.event_time).format('YYYY/MM/DD HH:mm'),
-        "facility": traceWordsResource.cache.getFacilityWord({facilityId: obj.biz_location_id}),
+        "facility": facility.viewBsName,
         "bizLocation": { "latitude": null, "longitude": null },
         "stateId": traceWord.conversionId.trim(),
         "bizStep": traceWord.viewBsName,

@@ -106,7 +106,7 @@ class TraceWords {
    * @return {Object} 該当するレコード
    */
   getFacilityWord(searchWord: {facilityId?: string, locationId?: string} = {}) {
-    return this.traceWordsConvertion.find(x => {
+    return this.facilityWordList.find(x => {
       if (searchWord.facilityId && searchWord.locationId) {
         return x.facilityId === searchWord.facilityId && x.locationId === searchWord.locationId; 
       } else if (searchWord.facilityId) {
