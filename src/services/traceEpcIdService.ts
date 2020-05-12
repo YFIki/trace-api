@@ -1,4 +1,7 @@
 import axios from 'axios';
+import traceWordsResource from '../loaders/traceWordsResource';
+import moment from 'moment-timezone';
+import { sortArrayObject }  from '../api/middlewares/sort';
 
 /**
  * トレース情報を返却する
@@ -44,8 +47,30 @@ export const getTraceConsumer = async (
       return array;
     }, []);
 
+    moment.tz.setDefault("Asia/Tokyo");
+
+    // eventsの値を用語変換し、再作成
+    const events: Array<object> = result.events.reduce((array, obj) => {
+      // 対応する用語変換レコードの取得
+      // 'urn:epcglobal:cbv:bizstep:{hoge}' の {hoge} を取得
+      const bizStep = obj.biz_step.split(':').pop();
+      const traceWord = traceWordsResource.cache.getTraceWordConvertion({bizStep: bizStep});
+
+      const event = {
+        "datetime": moment(obj.event_time).format('YYYY/MM/DD HH:mm'),
+        "facility": traceWordsResource.cache.getFacilityWord({facilityId: obj.biz_location_id}),
+        "bizLocation": { "latitude": null, "longitude": null },
+        "stateId": traceWord.conversionId.trim(),
+        "bizStep": traceWord.viewBsName,
+        "disposition": traceWord.disposition
+      }
+      array.push(event);
+
+      return array;
+    }, []);
+  
     // 取得されたeventsに上記で取得したpayloadsを追加したJSONを返却する
-    return {events: result.events, payloads: payloads};
+    return {events: sortArrayObject(events, 'dateTime', 'desc'), payloads: payloads};
   } catch (err) {
     console.log(err);
   }
