@@ -11,7 +11,4 @@ export default {
     .notEmpty()
     .bail()
     .withMessage(getCustomMessage('isRequired'))
-    .isBoolean()
-    .bail()
-    .withMessage(getCustomMessage('isRequired'))
 }
