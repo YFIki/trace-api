@@ -78,15 +78,25 @@ class TraceWords {
    * @param {string} searchWord.disposition
    * @return {Object} 該当するレコード
    */
-  getTraceWordConvertion(searchWord: {bizStep?: string, disposition?: string} = {}) {
+  getTraceWordConvertion(searchWord: {bizStep?: string, disposition?: string, facilityId?: string} = {}) {
     return this.traceWordsConvertion.find(x => {
-      if (searchWord.bizStep && searchWord.disposition) {
-        return x.bizStep === searchWord.bizStep && x.disposition === searchWord.disposition; 
-      } else if (searchWord.bizStep) {
-        return x.bizStep === searchWord.bizStep; 
-      } else if (searchWord.disposition) {
-        return x.disposition === searchWord.disposition;
+      if (searchWord.bizStep) {
+        if (x.bizStep !== searchWord.bizStep) {
+          return null;
+        }
       }
+      if (searchWord.disposition) {
+        if (x.disposition !== searchWord.disposition) {
+          return null;
+        }
+      }
+      if (searchWord.facilityId) {
+        if (x.facilityId !== searchWord.facilityId) {
+          return null;
+        }
+      }
+
+      return x;
     });
   }
 
@@ -107,13 +117,18 @@ class TraceWords {
    */
   getFacilityWord(searchWord: {facilityId?: string, locationId?: string} = {}) {
     return this.facilityWordList.find(x => {
-      if (searchWord.facilityId && searchWord.locationId) {
-        return x.facilityId === searchWord.facilityId && x.locationId === searchWord.locationId; 
-      } else if (searchWord.facilityId) {
-        return x.facilityId === searchWord.facilityId; 
-      } else if (searchWord.locationId) {
-        return x.locationId === searchWord.locationId;
+      if (searchWord.facilityId) {
+        if (x.facilityId !== searchWord.facilityId) {
+          return null;
+        }
       }
+      if (searchWord.locationId) {
+        if (x.locationId !== searchWord.locationId) {
+          return null;
+        }
+      }
+
+      return x;
     });
   }
 }
