@@ -54,8 +54,8 @@ export const getTraceConsumer = async (
       // 対応する用語変換レコードの取得
       // 'urn:epcglobal:cbv:bizstep:{hoge}' の {hoge} を取得
       const bizStep = obj.biz_step.split(':').pop();
-      const traceWord = traceWordsResource.cache.getTraceWordConvertion({bizStep: bizStep});
       const facility = traceWordsResource.cache.getFacilityWord({locationId: obj.biz_location_id});
+      const traceWord = traceWordsResource.cache.getTraceWordConvertion({bizStep: bizStep, facilityId: facility.facilityId});
 
       const event = {
         "datetime": moment(obj.event_time).format('YYYY/MM/DD HH:mm'),
