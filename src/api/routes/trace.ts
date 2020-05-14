@@ -170,6 +170,7 @@ export default (app: Router) => {
 	router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
 		// pathパラメータからepcIdを取得
 		const epcId = req.params.id;
+		
 		try {
 			// IFTから認証トークンを取得
 			const tokens = await getToken(config.ift.mmoOrganizationId, config.ift.apikey); 
@@ -178,7 +179,7 @@ export default (app: Router) => {
 			// 取得した認証トークンでIFTにデータを取得しに行く
 			const result = await getTraceConsumer(onboardingToken, epcId);
 			
-			return res.json(toCamelForObj(result)).status(200);
+			res.json(toCamelForObj(result)).status(200);
 		} catch (err) {
 			// 発生したエラーをエラーハンドラーに投げる。
 			return next(err.response);

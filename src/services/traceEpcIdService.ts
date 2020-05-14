@@ -58,6 +58,11 @@ export const getTraceConsumer = async (
       const facility = traceWordsResource.cache.getFacilityWord({locationId: obj.biz_location_id});
       const traceWord = traceWordsResource.cache.getTraceWordConvertion({bizStep: bizStep, facilityId: facility.facilityId});
 
+      // traceWordが取得できなかった場合はイベントを配列に追加しない
+      if (!traceWord) {
+        return array;
+      }
+
       const event = {
         "datetime": moment(obj.event_time).format('YYYY/MM/DD HH:mm'),
         "facility": facility.viewBsName,

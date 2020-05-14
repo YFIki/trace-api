@@ -80,17 +80,17 @@ class TraceWords {
    */
   getTraceWordConvertion(searchWord: {bizStep?: string, disposition?: string, facilityId?: string} = {}) {
     return this.traceWordsConvertion.find(x => {
-      if (searchWord.bizStep) {
+      if ('bizStep' in searchWord) {
         if (x.bizStep !== searchWord.bizStep) {
           return null;
         }
       }
-      if (searchWord.disposition) {
+      if ('disposition' in searchWord) {
         if (x.disposition !== searchWord.disposition) {
           return null;
         }
       }
-      if (searchWord.facilityId) {
+      if ('facilityId' in searchWord) {
         if (x.facilityId !== searchWord.facilityId) {
           return null;
         }
@@ -117,12 +117,12 @@ class TraceWords {
    */
   getFacilityWord(searchWord: {facilityId?: string, locationId?: string} = {}) {
     return this.facilityWordList.find(x => {
-      if (searchWord.facilityId) {
+      if ('facilityId' in searchWord) {
         if (x.facilityId !== searchWord.facilityId) {
           return null;
         }
       }
-      if (searchWord.locationId) {
+      if ('locationId' in searchWord) {
         if (x.locationId !== searchWord.locationId) {
           return null;
         }
