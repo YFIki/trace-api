@@ -28,7 +28,7 @@ const router = Router();
  *                 properties:
  *                   datetime:
  *                     description: 'yyyy/mm/dd HH:MM'
- *                     type: date
+ *                     type: string
  *                   facility:
  *                     description: '<IFT取得施設データ> 　or  <変換用語>'
  *                     type: string
@@ -66,10 +66,10 @@ const router = Router();
  *                       type: number
  *                 casting_net_time:
  *                   description: 'yyyy/mm/dd HH:MM'
- *                   type: date
+ *                   type: string
  *                 lifting_net_time:
  *                   description: 'yyyy/mm/dd HH:MM'
- *                   type: date
+ *                   type: string
  * '/api/v1/trace/{epcId}':
  *  get:
  *   summary: '？？？'
@@ -88,12 +88,68 @@ const router = Router();
  *         application/json:
  *           schema:
  *            properties:
- *             trace_list:
- *               description: '？？？'
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
+ *              events:
+ *                description: ''
+ *                type: array
+ *                items:
+ *                  type: object
+ *                  properties:
+ *                    datetime: 
+ *                      description: '日時'
+ *                      format: 'YYYY/MM/DD HH:mm'
+ *                      type: string
+ *                    facility:
+ *                      description: '施設名'
+ *                      type: string
+ *                    bizLocation:
+ *                      type: object
+ *                      properties:
+ *                        latitude:
+ *                          description: '緯度'
+ *                          type: number
+ *                        longitude:
+ *                          description: '経度'
+ *                          type: number
+ *                    stateId:
+ *                      description: '変換ID'
+ *                      type: number
+ *                    bizStep:
+ *                      description: '業務ステップ'
+ *                      type: string
+ *                    disposition:
+ *                      description: 
+ *                      type: string
+ *              payloads:
+ *                description: ''
+ *                type: array
+ *                items:
+ *                  type: object
+ *                  properties:
+ *                    coordinate:
+ *                      type: object
+ *                      properties:
+ *                        latitude:
+ *                          description: '緯度'
+ *                          type: number
+ *                        longitude:
+ *                          description: '経度'
+ *                          type: number
+ *                    castingNetTime:
+ *                       description: ''
+ *                       format: 'YYYY-MM-DDTHH:mm:ssZ'
+ *                       type: string
+ *                    castingNetTimeZoneOffset:
+ *                       description: ''
+ *                       type: string
+ *                    liftingNetTime:
+ *                       description: ''
+ *                       format: 'YYYY-MM-DDTHH:mm:ssZ'
+ *                       type: string
+ *                    liftingNetTimeZoneOffset:
+ *                       description: ''
+ *                       type: string
+ *     400:
+ *       description: 'Bad Request'
  *     401:
  *       description: 'Unauthorized'
  */
@@ -124,8 +180,8 @@ export default (app: Router) => {
 			
 			return res.json(toCamelForObj(result)).status(200);
 		} catch (err) {
-			// 例外が発生した時の対応がわからないので、一旦console.logに出力するようにします。
-			console.log(err);
+			// 発生したエラーをエラーハンドラーに投げる。
+			return next(err.response);
 		}
 	});
 };

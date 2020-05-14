@@ -28,6 +28,7 @@ export const getTraceConsumer = async (
       result = await axios.get(
         `https://sandbox.food.ibm.com/ift/api/outbound/v2/epcs/${epcId}/trace/consumer`,
         config);
+
       result = result.data;
     }
     
@@ -73,7 +74,7 @@ export const getTraceConsumer = async (
     // 取得されたeventsに上記で取得したpayloadsを追加したJSONを返却する
     return {events: sortArrayObject(events, 'dateTime', 'desc'), payloads: payloads};
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 }
 
