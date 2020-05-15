@@ -19,6 +19,7 @@ export const getTraceConsumer = async (
       'Authorization': `Bearer ${onboardingToken}`
     },
   };
+
   try {
     let result;
     // NODE_ENVがtestの時はMockを返す
@@ -47,7 +48,7 @@ export const getTraceConsumer = async (
       }
       return array;
     }, []);
-
+    
     moment.tz.setDefault("Asia/Tokyo");
 
     // eventsの値を用語変換し、再作成

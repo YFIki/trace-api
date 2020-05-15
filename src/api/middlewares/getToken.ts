@@ -1,56 +1,81 @@
 import axios from 'axios';
+import session from 'express-session';
+import config from 'config';
 
-/**
- * IFTから認証トークン（onboarding_token）を取得して返却する
- * @param mmoOrganizationId
- * @param apikey
- * @return {object} json
- */
-export const getToken = async (mmoOrganizationId: string, apikey: string): Promise<{ onboarding_token: string }> => {
-  const iamTokenData = await getIamToken(apikey);
-  return await exchangeToken(mmoOrganizationId, iamTokenData);
-};
+class Token {
+  /**
+   * ミドルウェアとして、セッションにIAM TokenとOnboardingTokenが入っているか確認する
+   * 入っていない場合は取得しに行く
+   */
+  static middleware = async (req, res, next) => {
+    if (!session.iamToken) {
+      session.iamToken = await Token.getIamToken(config.ift.apikey);
+    }
+    if (!session.onboardingToken) {
+      session.onboardingToken = await Token.exchangeToken(config.ift.mmoOrganizationId, session.iamToken);
+    }
+    next();
+  }
 
-const getIamToken = async (apikey: string): Promise<string> => {
-  const data: string = 'grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=' + apikey;
-  const config: object = {
-    headers: {
+  /**
+   * IFTから認証トークン（onboarding_token）を取得して返却する
+   * @param mmoOrganizationId 
+   * @param apikey 
+   * @return {object} json
+   */
+  static getToken = async (
+    mmoOrganizationId: string,
+    apikey: string
+  ): Promise<{onboarding_token: string}> => {
+    const iamTokenData = await Token.getIamToken(apikey);
+    return await Token.exchangeToken(mmoOrganizationId, iamTokenData);
+  };
+
+  static getIamToken = async (apikey: string): Promise<string> => {
+    const data: string = 'grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=' + apikey;
+    const config: object = {
+      headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-    },
-  };
+      }
+    };
 
-  try {
-    const result = await axios.post('https://iam.cloud.ibm.com/identity/token', data, config);
-    return result.data;
-  } catch (err) {
-    console.log(err);
+    try {
+      const result = await axios.post('https://iam.cloud.ibm.com/identity/token', data, config);
+      return result.data;
+    } catch (err) {
+      console.log(err); 
+    }
   }
-};
 
-const exchangeToken = async (mmoOrganizationId: string, iamTokenData: any): Promise<any> => {
-  const data = {
-    access_token: iamTokenData.access_token,
-    refresh_token: iamTokenData.refresh_token,
-    token_type: iamTokenData.token_type,
-    expires_in: iamTokenData.expires_in,
-    expiration: iamTokenData.expiration,
-    scope: iamTokenData.scope,
-  };
+  static exchangeToken = async (
+    mmoOrganizationId: string,
+    iamTokenData: any
+  ): Promise<any> => {
+    const data = {
+      access_token: iamTokenData.access_token,
+      refresh_token: iamTokenData.refresh_token,
+      token_type: iamTokenData.token_type,
+      expires_in: iamTokenData.expires_in,
+      expiration: iamTokenData.expiration,
+      scope: iamTokenData.scope,
+    };
 
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
 
-  try {
-    const result = await axios.post(
-      `https://sandbox.food.ibm.com/ift/api/identity-proxy/exchange_token/v1/organization/${mmoOrganizationId}`,
-      data,
-      config,
-    );
-    return result.data;
-  } catch (err) {
-    console.log(err);
+    try {
+      const result = await axios.post(
+        `https://sandbox.food.ibm.com/ift/api/identity-proxy/exchange_token/v1/organization/${mmoOrganizationId}`,
+        data,
+        config);
+      return result.data;
+    } catch (err) {
+      console.log(err);
+    }
   }
-};
+}
+
+export default Token;
