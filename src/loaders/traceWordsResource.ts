@@ -19,7 +19,7 @@ const SELECT_FACILITY_WORD_LIST = `
   SELECT
     facility_id AS "facilityId",
     location_id AS "locationId",
-    view_bs_name AS "viewBsName",
+    view_facility_name AS "viewFacilityName",
     registed_date AS "registedDate",
     updated_date AS "updateDate"
   FROM
