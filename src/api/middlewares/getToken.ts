@@ -1,19 +1,23 @@
 import axios from 'axios';
 import session from 'express-session';
 import config from 'config';
+import decode from 'jwt-decode';
+import moment from 'moment-timezone';
 
 class Token {
   /**
    * ミドルウェアとして、セッションにIAM TokenとOnboardingTokenが入っているか確認する
    * 入っていない場合は取得しに行く
+   * OnboardingTokenの有効期限が切れている場合も取得しに行く
    */
   static middleware = async (req, res, next) => {
     if (!session.iamToken) {
       session.iamToken = await Token.getIamToken(config.ift.apikey);
     }
-    if (!session.onboardingToken) {
+    if (!session.onboardingToken || !isValid(session.onboardingToken.onboarding_token)) {
       session.onboardingToken = await Token.exchangeToken(config.ift.mmoOrganizationId, session.iamToken);
     }
+
     next();
   }
 
@@ -77,5 +81,16 @@ class Token {
     }
   }
 }
+
+/**
+ * JWTをデコードして、expが現在日時より前かを判別する
+ * @param {string} JWTトークン
+ * @return {boolean} true/false
+ */
+const isValid = (jwt: string): boolean => {
+  const decodeToken = decode(jwt);
+  return !!(decodeToken.exp >= moment().tz('Asia/Tokyo').unix());
+}
+
 
 export default Token;
