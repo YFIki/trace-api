@@ -65,7 +65,7 @@ export const getTraceConsumer = async (
 
       const event = {
         "datetime": moment(obj.event_time).format('YYYY/MM/DD HH:mm'),
-        "facility": facility.viewBsName,
+        "facility": facility.viewFacilityName,
         "bizLocation": { "latitude": null, "longitude": null },
         "stateId": traceWord.conversionId.trim(),
         "bizStep": traceWord.viewBsName,
