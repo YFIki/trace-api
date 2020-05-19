@@ -3,8 +3,10 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import routes from '../api';
 import config from 'config';
+import session from 'express-session';
 import DbConnection from './dbconnection';
 import httpContext from 'express-http-context';
+import Token from '../api/middlewares/getToken';
 
 export default ({ app }: { app: express.Application }) => {
   /**
@@ -55,8 +57,20 @@ export default ({ app }: { app: express.Application }) => {
   app.use(cors());
   app.use(require('method-override')());
   app.use(bodyParser.json());
+  app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie:{
+      httpOnly: true,
+      secure: false,
+      maxage: 1000 * 60 * 30
+    }
+  }));
+
   app.use(httpContext.middleware);
   app.use(DbConnection.middleware);
+  app.use(Token.middleware);
 
   app.use(config.api.prefix, routes());
 
