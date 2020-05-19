@@ -28,13 +28,10 @@ npm start
    $env:NODE_ENV="test"
    ```
 1. サーバ立ち上げ(linux,windows 共通)
-
 ```bash
 npm start
 ```
-
 1. テストコード実行(linux,windows 共通)
-
 ```bash
 npm run test
 ```

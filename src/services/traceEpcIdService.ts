@@ -2,6 +2,7 @@ import axios from 'axios';
 import traceWordsResource from '../loaders/traceWordsResource';
 import moment from 'moment-timezone';
 import { sortArrayObject }  from '../api/middlewares/sort';
+import { getAllEventList } from '../models/eventInfoModel';
 
 /**
  * トレース情報を返却する
@@ -51,25 +52,31 @@ export const getTraceConsumer = async (
     moment.tz.setDefault("Asia/Tokyo");
 
     // eventsの値を用語変換し、再作成
+    const eventInfoList = await getAllEventList();
     const events: Array<object> = result.events.reduce((array, obj) => {
       // 対応する用語変換レコードの取得
       // 'urn:epcglobal:cbv:bizstep:{hoge}' の {hoge} を取得
       const bizStep = obj.biz_step.split(':').pop();
       const facility = traceWordsResource.cache.getFacilityWord({locationId: obj.biz_location_id});
       const traceWord = traceWordsResource.cache.getTraceWordConvertion({bizStep: bizStep, facilityId: facility.facilityId});
+      const eventInfo = eventInfoList.find(x => x.eventId === obj.id);
 
       // traceWordが取得できなかった場合はイベントを配列に追加しない
       if (!traceWord) {
         return array;
       }
 
+      // picUrlは後ほど
       const event = {
         "datetime": moment(obj.event_time).format('YYYY/MM/DD HH:mm'),
         "facility": facility.viewFacilityName,
         "bizLocation": { "latitude": null, "longitude": null },
         "stateId": traceWord.conversionId.trim(),
         "bizStep": traceWord.viewBsName,
-        "disposition": traceWord.disposition
+        "disposition": traceWord.disposition,
+        "comment": eventInfo ? eventInfo.comment : '',
+        "dishName": eventInfo ? eventInfo.dishName : '',
+        "picture": eventInfo ? eventInfo.picUrl : ''
       }
       array.push(event);
 
