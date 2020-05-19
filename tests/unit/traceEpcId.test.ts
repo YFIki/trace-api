@@ -8,6 +8,7 @@
 const request = require('supertest');
 
 describe('traceEpcIdAPI（仮）の単体テスト', () => {
+  /**
   it('mock値が返ってくるか確認', async () => {
     const response = await request('http://localhost:4000').get('/api/v1/trace/urn%3Aibm%3Aift%3Aproduct%3Aserial%3Aobj%3A4966479542960.IAeK.1000');
     const resultJson = {
@@ -128,5 +129,43 @@ describe('traceEpcIdAPI（仮）の単体テスト', () => {
 
     expect(response.status).toBe(200);
     expect(response.body).toMatchObject(resultJson);
+  });
+  */
+  it('エラーなく終了し、想定された形式で返却されるか確認', async () => {
+    const response = await request('http://localhost:4000').get('/api/v1/trace/urn%3Aibm%3Aift%3Aproduct%3Aserial%3Aobj%3A4966479542960.IAeK.1000');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toMatchObject(
+      {
+        events: expect.arrayContaining([
+          {
+            datetime: expect.anything(),
+            facility: expect.anything(),
+            bizLocation: {
+              latitude: null,
+              longitude: null
+            },
+            stateId: expect.anything(),
+            bizStep: expect.anything(),
+            disposition: expect.anything(),
+            comment: expect.anything(),
+            dishName:expect.anything(),
+            picture:expect.anything()
+          }
+        ]),
+        payloads:  expect.arrayContaining([
+          {
+            coordinate: {
+              latitude: expect.anything(),
+              longitude: expect.anything()
+            },
+            castingNetTime: expect.anything(),
+            castingNetTimeZoneOffset: expect.anything(),
+            liftingNetTime: expect.anything(),
+            liftingNetTimeZoneOffset: expect.anything()
+          }
+        ])
+      }
+    );
   });
 });

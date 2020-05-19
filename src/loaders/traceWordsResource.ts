@@ -46,7 +46,6 @@ class TraceWords {
       let sequel = new dbconnection();
       const traceWordsConvertion = await sequel.select(SELECT_TRACE_WORD_CONVERTION);
       const facilityWordList = await sequel.select(SELECT_FACILITY_WORD_LIST);
-      await sequel.sequelize.close();
       sequel = null;
       this.traceWordsConvertion = Object.freeze(traceWordsConvertion);
       this.facilityWordList = Object.freeze(facilityWordList);
@@ -127,7 +126,6 @@ class TraceWords {
           return null;
         }
       }
-
       return x;
     });
   }

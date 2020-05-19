@@ -71,13 +71,13 @@ const router = Router();
  *                   type: string
  * '/api/v1/trace/{epcId}':
  *  get:
- *   summary: '？？？'
- *   description: 'IFTからトレース情報jsonを取得する'
+ *   summary: 'IFTからepcIdに合致するロット、シリアル、またはパレットの消費者トレースを取得し、整形して返却する'
+ *   description: 'epcIdに合致する食品のトレース情報をIFTのTrace API（/epcs/{epc_id}/trace/consumer）から取得し、日付の降順にソートして返却する。'
  *   parameters:
  *   - in: path
  *     name: epcId
  *     required: true
- *     description: ？？？
+ *     description: トレースするロット、シリアル、またはパレットのEPC
  *     schema:
  *       type: string
  *   responses:
@@ -116,7 +116,16 @@ const router = Router();
  *                      description: '業務ステップ'
  *                      type: string
  *                    disposition:
- *                      description: 
+ *                      description: ''
+ *                      type: string
+ *                    comment:
+ *                      description: 'このイベントに対するコメント'
+ *                      type: string
+ *                    dishName:
+ *                      description: '料理名'
+ *                      type: string
+ *                    picture:
+ *                      description: '画像バイナリ'
  *                      type: string
  *              payloads:
  *                description: ''
