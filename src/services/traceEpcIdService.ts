@@ -17,7 +17,8 @@ export const getTraceConsumer = async (
   const config: object = {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${onboardingToken}`
+      'Authorization': `Bearer ${onboardingToken}`,
+      'X-ApiCache-Bypass': true
     },
   };
 
@@ -30,9 +31,11 @@ export const getTraceConsumer = async (
       result = await axios.get(
         `https://sandbox.food.ibm.com/ift/api/outbound/v2/epcs/${epcId}/trace/consumer`,
         config);
-
       result = result.data;
     }
+
+    // eventsの値を用語変換し、再作成
+    const eventInfoList = await getAllEventList();
     
     // 取得されたデータから、payloadのkeyがtargetsで指定されている値を含むものを取得し、配列に追加する。
     const targets = [
@@ -45,15 +48,18 @@ export const getTraceConsumer = async (
     const payloads: Array<object> = result.payloads.reduce((array, obj) => {
       const payload = (new Function("return " + obj.payload))();
       if (inculudes(Object.keys(payload), targets)) {
-        array.push(payload);
+        const eventInfo = eventInfoList.find(x => x.eventId === obj.id);
+        const addInfo = {
+          "comment": eventInfo? eventInfo.comment : '',
+          "picture": eventInfo ? eventInfo.picUrl : ''
+        };
+        array.push(Object.assign(payload, addInfo));
       }
       return array;
     }, []);
     
     moment.tz.setDefault("Asia/Tokyo");
 
-    // eventsの値を用語変換し、再作成
-    const eventInfoList = await getAllEventList();
     const events: Array<object> = result.events.reduce((array, obj) => {
       // 対応する用語変換レコードの取得
       // 'urn:epcglobal:cbv:bizstep:{hoge}' の {hoge} を取得
