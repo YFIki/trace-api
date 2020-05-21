@@ -17,7 +17,8 @@ export const getTraceConsumer = async (
   const config: object = {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${onboardingToken}`
+      'Authorization': `Bearer ${onboardingToken}`,
+      'X-ApiCache-Bypass': true
     },
   };
 
@@ -30,7 +31,6 @@ export const getTraceConsumer = async (
       result = await axios.get(
         `https://sandbox.food.ibm.com/ift/api/outbound/v2/epcs/${epcId}/trace/consumer`,
         config);
-
       result = result.data;
     }
 
