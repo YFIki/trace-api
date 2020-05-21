@@ -162,7 +162,9 @@ describe('traceEpcIdAPI（仮）の単体テスト', () => {
             castingNetTime: expect.anything(),
             castingNetTimeZoneOffset: expect.anything(),
             liftingNetTime: expect.anything(),
-            liftingNetTimeZoneOffset: expect.anything()
+            liftingNetTimeZoneOffset: expect.anything(),
+            comment: expect.anything(),
+            picture:expect.anything()
           }
         ])
       }
