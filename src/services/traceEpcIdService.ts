@@ -3,6 +3,7 @@ import traceWordsResource from '../loaders/traceWordsResource';
 import moment from 'moment-timezone';
 import { sortArrayObject }  from '../api/middlewares/sort';
 import { getAllEventList } from '../models/eventInfoModel';
+import fs from 'fs';
 
 /**
  * トレース情報を返却する
@@ -51,7 +52,7 @@ export const getTraceConsumer = async (
         const eventInfo = eventInfoList.find(x => x.eventId === obj.id);
         const addInfo = {
           "comment": eventInfo? eventInfo.comment : '',
-          "picture": eventInfo ? eventInfo.picUrl : ''
+          "picture": eventInfo ? getPicture(eventInfo.picUrl) : ''
         };
         array.push(Object.assign(payload, addInfo));
       }
@@ -83,7 +84,7 @@ export const getTraceConsumer = async (
         "disposition": traceWord.disposition,
         "comment": eventInfo ? eventInfo.comment : '',
         "dishName": eventInfo ? eventInfo.dishName : '',
-        "picture": eventInfo ? eventInfo.picUrl : ''
+        "picture": eventInfo ? getPicture(eventInfo.picUrl) : ''
       }
       array.push(event);
 
@@ -115,4 +116,15 @@ const inculudes = (array: Array<string>, targets: Array<string>): boolean => {
   }
 
   return result;
+}
+
+/**
+ * 引数で指定されたURLの画像をObject strageから取得する
+ * @param {String} picUrl
+ * @return {Binary} 画像データ
+ */
+export const getPicture = (picUrl: string): any => {
+  const buf = fs.readFileSync(picUrl);
+
+  return buf.toString('base64');
 }

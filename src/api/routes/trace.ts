@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { getTraceList } from '../../services/traceService';
-import { getTraceConsumer } from '../../services/traceEpcIdService';
+import { getTraceConsumer, getPicture } from '../../services/traceEpcIdService';
 import session from 'express-session';
 import { toCamelForObj } from '../middlewares/converter';
 
@@ -10,6 +10,8 @@ const router = Router();
  * @swagger
  * '/api/v1/trace':
  *  get:
+ *   tags:
+ *     - trace
  *   summary: '？？？'
  *   description: '？？？？？'
  *   responses:
@@ -71,6 +73,8 @@ const router = Router();
  *                   type: string
  * '/api/v1/trace/{epcId}':
  *  get:
+ *   tags:
+ *     - trace
  *   summary: 'IFTからepcIdに合致するロット、シリアル、またはパレットの消費者トレースを取得し、整形して返却する'
  *   description: 'epcIdに合致する食品のトレース情報をIFTのTrace API（/epcs/{epc_id}/trace/consumer）から取得し、日付の降順にソートして返却する。'
  *   parameters:
@@ -160,6 +164,26 @@ const router = Router();
  *       description: 'Bad Request'
  *     401:
  *       description: 'Unauthorized'
+ * '/api/v1/trace/image':
+ *  get:
+ *   tags:
+ *     - trace
+ *   summary: 'クエリパラメータで指定された画像パスの画像を取得する'
+ *   description: 'クエリパラメータで指定された画像パスの画像を取得し、arrayBuffer形式で返却する'
+ *   parameters:
+ *   - in: query
+ *     name: img_url
+ *     description: 画像のURL
+ *   responses:
+ *     200:
+ *       description: '正常終了'
+ *       content:
+ *         blob:
+ *           schema:
+ *            type: blob
+ *            example: 画像データ
+ *     400:
+ *       description: 'Bad Request'
  */
 export default (app: Router) => {
 	app.use('/v1/trace', router);
@@ -172,6 +196,21 @@ export default (app: Router) => {
 		} catch (err) {
 			// 例外が発生した時の対応がわからないので、一旦console.logに出力するようにします。
 			console.log(err);
+		}
+	});
+
+	router.get('/image', (req: Request, res: Response, next: NextFunction) => {
+		try {
+			// クエリパラメータからurlを取得
+			const url = req.query.img_url.toString();
+
+			// URLから画像を取得し、blobで返却する
+			const picture = getPicture(url);
+			
+			res.send(picture);
+		} catch (err) {
+			console.log(err);
+			next(err);
 		}
 	});
 
@@ -189,7 +228,7 @@ export default (app: Router) => {
 			res.json(toCamelForObj(result)).status(200);
 		} catch (err) {
 			// 発生したエラーをエラーハンドラーに投げる。
-			return next(err.response);
+			next(err.response);
 		}
 	});
 };
