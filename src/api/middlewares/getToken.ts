@@ -35,7 +35,7 @@ class Token {
     return await Token.exchangeToken(mmoOrganizationId, iamTokenData);
   };
 
-  static getIamToken = async (apikey: string): Promise<string> => {
+  static getIamToken = async (apikey: string): Promise<{access_token, refresh_token}> => {
     const data: string = 'grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=' + apikey;
     const config: object = {
       headers: {
