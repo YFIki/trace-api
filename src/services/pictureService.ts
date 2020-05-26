@@ -1,6 +1,7 @@
 import session from 'express-session';
 import axios from 'axios';
 import getToken from '../api/middlewares/getToken';
+import { isValid } from '../api/middlewares/getToken';
 
 /**
  * 引数で指定されたURLの画像をObject strageから取得する
@@ -12,7 +13,7 @@ export const getPicture = async (picUrl: string): Promise<any> => {
     // IAM Token取得
     const apiKey = 'dX1J7z8yfFJgjQku10ahuFT7AwvduU9SfeXO_sby2tff';
 
-    if (!session.osAccessToken) {
+    if (!session.osAccessToken || !isValid(session.osAccessToken)) {
       session.osAccessToken = (await getToken.getIamToken(apiKey)).access_token;
     }
     

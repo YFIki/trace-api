@@ -94,3 +94,4 @@ const isValid = (jwt: string): boolean => {
 
 
 export default Token;
+export { isValid }
