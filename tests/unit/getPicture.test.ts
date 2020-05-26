@@ -1,15 +1,17 @@
 /**
  * getPicture.tsの単体テスト
  *
- * given: apiキーと組織ID固定値が用意された状態
- * when:  getToken（apiキーと組織ID固定値）実行
- * then:  IFTからonboarding_tokenが含まれるjsonが返却される
+ * given: Object Strageに画像データが入っている状態
+ * when:  /trace/image?imgUrl=<画像URL>を実行
+ * then:  画像URLの画像がbase64形式で取得される
  */
-import config from 'config';
-import { getPicture } from '../../src/services/traceEpcIdService';
+import request from 'supertest';
 
 describe('getPicture.tsの単体テスト', () => {
   it('test', async () => {
-    console.log(getPicture('images/img_menu.jpg'));
+    const response = await request('http://localhost:4000').get('/api/v1/trace/image?imgUrl=trace-bucket%2Fimg_menu.jpg');
+
+    expect(response.status).toBe(200);
+    expect(response.text).toEqual(expect.not.objectContaining({errors: expect.anything()}));
   }, 20000);
 });
