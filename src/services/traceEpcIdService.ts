@@ -43,7 +43,13 @@ export const getTraceConsumer = async (
       "liftingNetTime",
       "liftingNetTimeZoneOffset",
       "castingNetTime",
-      "castingNetTimeZoneOffset"
+      "castingNetTimeZoneOffset",
+      "departureNetTime",
+      "departureNetTimeZoneOffset",
+      "fishingDepth",
+      "departureFishingPort",
+      "company",
+      "fishingBoat"
     ];
     const payloads: Array<object> = result.payloads.reduce((array, obj) => {
       const payload = (new Function("return " + obj.payload))();
@@ -67,6 +73,7 @@ export const getTraceConsumer = async (
       const facility = traceWordsResource.cache.getFacilityWord({locationId: obj.biz_location_id});
       const traceWord = traceWordsResource.cache.getTraceWordConvertion({bizStep: bizStep, facilityId: facility.facilityId});
       const eventInfo = eventInfoList.find(x => x.eventId === obj.id);
+      const locations = result.locations.find(x => x.id === obj.source_location_ids[0]);
 
       // traceWordが取得できなかった場合はイベントを配列に追加しない
       if (!traceWord) {
@@ -77,7 +84,10 @@ export const getTraceConsumer = async (
       const event = {
         "datetime": moment(obj.event_time).format('YYYY/MM/DD HH:mm'),
         "facility": facility.viewFacilityName,
-        "bizLocation": { "latitude": null, "longitude": null },
+        "bizLocation": {
+          "latitude": locations ? locations.latitude : null,
+          "longitude": locations ? locations.longitude : null,
+        },
         "stateId": traceWord.conversionId.trim(),
         "bizStep": traceWord.viewBsName,
         "disposition": traceWord.disposition,
