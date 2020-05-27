@@ -35,6 +35,15 @@ class Token {
     return await Token.exchangeToken(mmoOrganizationId, iamTokenData);
   };
 
+  /**
+   * 引数で指定されたAPIキーを使用し、IAMトークンを取得する
+   * - API を使用した IBM Cloud IAM アクセス・トークンのリフレッシュと新しいリフレッシュ・トークンの取得
+   * https://www.ibm.com/support/knowledgecenter/ja/bluemix_stage/containers/cs_cli_install.html
+   * @param {String} apikey
+   * @param {String} [refreshToken]
+   * @param {string} [accountId]
+   * @return {object} { "access_token": "<iam_token>", "refresh_token": "<iam_refresh_token>", "token_type": "Bearer", "expires_in": 3600, "expiration": 1493747503}
+   */
   static getIamToken = async (apikey: string): Promise<{access_token, refresh_token}> => {
     const data: string = 'grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=' + apikey;
     const config: object = {
@@ -51,6 +60,12 @@ class Token {
     }
   }
 
+  /**
+   * 引数で指定された値を用いて、Onboardingトークンを取得する
+   * @param {String} mmoOrganizationId 企業ID
+   * @param {object} iamTokenData IAMトークン
+   * @return {object} onboardingトークン
+   */
   static exchangeToken = async (
     mmoOrganizationId: string,
     iamTokenData: any
