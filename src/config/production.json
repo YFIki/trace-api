@@ -1,0 +1,10 @@
+{
+  "db": {
+    "host": "172.30.32.9",
+    "database": "trace_db",
+    "username": "ikitraceadmin",
+    "password": "ikitracepass",
+    "dialect": "postgres",
+    "timezone": "+09:00"
+  }
+}
