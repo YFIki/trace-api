@@ -6,5 +6,8 @@
     "password": "ikitracepass",
     "dialect": "postgres",
     "timezone": "+09:00"
+  },
+  "logs": {
+    "level": "debug"
   }
 }
