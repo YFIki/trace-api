@@ -13,13 +13,14 @@ class Token {
   static middleware = async (req, res, next) => {
     try {
       if (!session.iamToken || !isValid(session.iamToken.access_token)) {
-        session.iamToken = await Token.getIamToken(config.ift);
+        session.iamToken = await Token.getIamToken(config.ift.apikey);
       }
       if (!session.onboardingToken || !isValid(session.onboardingToken.onboarding_token)) {
         session.onboardingToken = await Token.exchangeToken(config.ift.mmoOrganizationId, session.iamToken);
       }
       next();
     } catch (err) {
+      console.log(err)
       next(err.response);
     }
   }
