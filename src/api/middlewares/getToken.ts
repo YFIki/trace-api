@@ -11,14 +11,17 @@ class Token {
    * OnboardingTokenの有効期限が切れている場合も取得しに行く
    */
   static middleware = async (req, res, next) => {
-    if (!session.iamToken) {
-      session.iamToken = await Token.getIamToken(config.ift.apikey);
+    try {
+      if (!session.iamToken || !isValid(session.iamToken.access_token)) {
+        session.iamToken = await Token.getIamToken(config.ift);
+      }
+      if (!session.onboardingToken || !isValid(session.onboardingToken.onboarding_token)) {
+        session.onboardingToken = await Token.exchangeToken(config.ift.mmoOrganizationId, session.iamToken);
+      }
+      next();
+    } catch (err) {
+      next(err.response);
     }
-    if (!session.onboardingToken || !isValid(session.onboardingToken.onboarding_token)) {
-      session.onboardingToken = await Token.exchangeToken(config.ift.mmoOrganizationId, session.iamToken);
-    }
-
-    next();
   }
 
   /**
@@ -56,7 +59,7 @@ class Token {
       const result = await axios.post('https://iam.cloud.ibm.com/identity/token', data, config);
       return result.data;
     } catch (err) {
-      console.log(err); 
+      throw err; 
     }
   }
 
@@ -92,7 +95,7 @@ class Token {
         config);
       return result.data;
     } catch (err) {
-      console.log(err);
+      throw err; 
     }
   }
 }
