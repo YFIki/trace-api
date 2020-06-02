@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 import httpContext from 'express-http-context';
-const config = require('../config/development.json');
+import config from 'config';
 const db = config.db;
 
 const HTTP_CONTEXT_KEY_DB_CONNECTION = 'db-connection';
