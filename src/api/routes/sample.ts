@@ -2,9 +2,9 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { getSample } from '../../services/sampleService';
 import {validationResult} from 'express-validator';
 import validator from '../middlewares/validators/requestValidator';
-import errorsCreator from '../middlewares/errorCreator';
-import dbconnection from '../../loaders/dbconnection';
-import logger from '../../loaders/logger';
+import errorsCreator from '../../submodules/utils/errorCreator';
+import dbconnection from '../../submodules/loaders/dbconnection';
+import logger from '../../submodules/loaders/logger';
 
 const router = Router();
 

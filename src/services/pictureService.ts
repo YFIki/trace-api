@@ -1,7 +1,7 @@
 import session from 'express-session';
 import axios from 'axios';
-import getToken from '../api/middlewares/getToken';
-import { isValid } from '../api/middlewares/getToken';
+import getToken from '../submodules/middlewares/getToken';
+import { isValid } from '../submodules/middlewares/getToken';
 
 /**
  * 引数で指定されたURLの画像をObject strageから取得する

@@ -1,4 +1,4 @@
-import dbconnection from '../loaders/dbconnection'
+import dbconnection from '../submodules/loaders/dbconnection'
 
 const SELECT_SAMPLE_DATA = 'SELECT * FROM "FASILITY_WORD_LIST" limit :limit';
 

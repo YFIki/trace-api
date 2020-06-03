@@ -1,4 +1,4 @@
-import dbconnection from '../loaders/dbconnection';
+import dbconnection from '../submodules/loaders/dbconnection';
 
 const SELECT_EVENT_INFO_ALL_DATA = `
 SELECT

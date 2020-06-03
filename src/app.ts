@@ -2,7 +2,7 @@ process.env["NODE_CONFIG_DIR"] = "./src/config";
 
 import express from 'express';
 import config from 'config';
-import Logger from './loaders/logger';
+import Logger from './submodules/loaders/logger';
 
 const startServer = async () => {
   const app = express();

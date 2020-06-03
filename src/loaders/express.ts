@@ -4,9 +4,9 @@ import cors from 'cors';
 import routes from '../api';
 import config from 'config';
 import session from 'express-session';
-import DbConnection from './dbconnection';
+import DbConnection from '../submodules/loaders/dbconnection';
 import httpContext from 'express-http-context';
-import Token from '../api/middlewares/getToken';
+import Token from '../submodules/middlewares/getToken';
 import * as health from '@cloudnative/health-connect';
 import * as Prometheus from 'appmetrics-prometheus';
 

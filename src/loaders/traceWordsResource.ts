@@ -1,5 +1,4 @@
-import dbconnection from './dbconnection';
-import { strictEqual } from 'assert';
+import dbconnection from '../submodules/loaders/dbconnection';
 
 const SELECT_TRACE_WORD_CONVERTION = `
   SELECT

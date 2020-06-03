@@ -1,4 +1,4 @@
-import Logger from './logger';
+import Logger from '../submodules/loaders/logger';
 import expressLoader from './express';
 import traceWordsResource from './traceWordsResource';
 
