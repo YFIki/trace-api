@@ -20,7 +20,6 @@ class Token {
       }
       next();
     } catch (err) {
-      console.log(err)
       next(err.response);
     }
   }
